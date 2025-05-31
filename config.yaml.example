@@ -1,0 +1,12 @@
+log:
+  level: debug
+
+port: 3000
+
+mongodb:
+  uri: mongodb://root:password@mongo:27017/
+
+jwt:
+  access:
+    token: -
+    expires: 1day

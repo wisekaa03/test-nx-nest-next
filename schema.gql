@@ -1,0 +1,46 @@
+# ------------------------------------------------------
+# THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
+# ------------------------------------------------------
+
+input CreateUserInput {
+  email: String!
+  password: String!
+  username: String!
+}
+
+input DeleteUserInput {
+  email: String
+  username: String
+}
+
+type LoginUser {
+  token: String!
+  user: User!
+}
+
+input LoginUserInput {
+  password: String!
+  username: String!
+}
+
+type Mutation {
+  createUser(user: CreateUserInput!): User!
+  deleteUser(user: DeleteUserInput!): Status!
+  login(user: LoginUserInput!): LoginUser!
+}
+
+type Query {
+  username(name: String!): User!
+  users: [User!]!
+  whoami: User!
+}
+
+enum Status {
+  ERROR
+  OK
+}
+
+type User {
+  email: String!
+  username: String!
+}
