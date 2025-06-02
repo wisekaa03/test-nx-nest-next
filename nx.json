@@ -26,9 +26,7 @@
       "options": {
         "targetName": "test"
       },
-      "exclude": [
-        "apps/backend-e2e/**/*"
-      ]
+      "exclude": ["apps/backend-e2e/**/*"]
     },
     {
       "plugin": "@nx/next/plugin",
@@ -40,6 +38,20 @@
         "buildDepsTargetName": "build-deps",
         "watchDepsTargetName": "watch-deps"
       }
+    },
+    {
+      "plugin": "@nx/playwright/plugin",
+      "options": {
+        "targetName": "e2e"
+      }
     }
-  ]
+  ],
+  "generators": {
+    "@nx/next": {
+      "application": {
+        "style": "scss",
+        "linter": "eslint"
+      }
+    }
+  }
 }

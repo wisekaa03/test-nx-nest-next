@@ -15,7 +15,7 @@ async function bootstrap() {
   app.flushLogs();
 
   const configService = app.get(ConfigService);
-  const port = configService.get<number>('port', 3000);
+  const port = configService.get<number>('port.backend', 3000);
 
   app.useGlobalInterceptors(new LoggerErrorInterceptor());
 
