@@ -14,6 +14,8 @@ import MuiCard from '@mui/material/Card';
 import CssBaseline from '@mui/material/CssBaseline';
 import { styled } from '@mui/material/styles';
 import { useMutation } from '@apollo/client';
+
+import { LoginUserOutput } from '@/backend/src/gql/user.gql';
 import { LOGIN } from '../gql/login';
 
 const Card = styled(MuiCard)(({ theme }) => ({
@@ -58,9 +60,8 @@ const Login = (props: { disableCustomTheme?: boolean }) => {
   // const navigate = useNavigate();
   const [passwordError, setPasswordError] = React.useState(false);
   const [passwordErrorMessage, setPasswordErrorMessage] = React.useState('');
-  const [onLoading, setOnLoading] = React.useState(false);
 
-  const [login, { data, loading, error }] = useMutation(LOGIN);
+  const [login, { loading }] = useMutation<{ login: LoginUserOutput }>(LOGIN, { fetchPolicy: 'no-cache' });
 
   // React.useEffect(() => {
   //   if (authStore.isLoggedIn) {
@@ -70,39 +71,18 @@ const Login = (props: { disableCustomTheme?: boolean }) => {
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    setOnLoading(true);
 
-    const data = new FormData(event.currentTarget);
-    const username = data.get('name') as string;
-    const password = data.get('password') as string;
-    await login({ variables: { username, password } })
-      .then(() => {
-        // navigate('/rounds');
+    const form = new FormData(event.currentTarget);
+    const username = form.get('name') as string;
+    const password = form.get('password') as string;
+    login({ variables: { username, password } })
+      .then(({ data }) => {
+        const token = data?.login.token;
       })
       .catch((error) => {
         setPasswordError(true);
-        setPasswordErrorMessage('Неверный пароль.');
-      })
-      .finally(() => {
-        setOnLoading(false);
+        setPasswordErrorMessage('Неверное имя или пароль.');
       });
-  };
-
-  const validateInputs = () => {
-    const password = document.getElementById('password') as HTMLInputElement;
-
-    let isValid = true;
-
-    if (!password.value || password.value.length < 6) {
-      setPasswordError(true);
-      setPasswordErrorMessage('Пароль должен быть 6 символов длиной.');
-      isValid = false;
-    } else {
-      setPasswordError(false);
-      setPasswordErrorMessage('');
-    }
-
-    return isValid;
   };
 
   return (
@@ -169,7 +149,7 @@ const Login = (props: { disableCustomTheme?: boolean }) => {
             }
             label="Запомнить меня"
           />
-          <Button type="submit" loading={onLoading} fullWidth variant="contained" onClick={validateInputs}>
+          <Button type="submit" loading={loading} fullWidth variant="contained">
             Войти
           </Button>
         </Box>
