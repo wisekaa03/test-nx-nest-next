@@ -1,5 +1,5 @@
 import { createHmac } from 'node:crypto';
-import { ForbiddenException, Injectable, UnauthorizedException } from '@nestjs/common';
+import { ForbiddenException, Injectable, Logger, UnauthorizedException } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
 import { JwtService, JwtSignOptions } from '@nestjs/jwt';
 
@@ -10,6 +10,7 @@ import { UserService } from '../service/user.service';
 
 @Injectable()
 export class AuthService {
+  private readonly logger = new Logger(AuthService.name);
   private accessTokenExpires: string;
 
   constructor(
@@ -26,6 +27,7 @@ export class AuthService {
     if (!valid) {
       throw new ForbiddenException();
     }
+    this.logger.log(`The "${username}" has logged in`);
     const token = await this.generateAccessToken(user);
     return {
       token,

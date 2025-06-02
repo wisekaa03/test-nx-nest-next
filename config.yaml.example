@@ -2,8 +2,8 @@ log:
   level: debug
 
 port:
-  frontend: 3000
-  backend: 3001
+  frontend: 4200
+  backend: 3000
 
 mongodb:
   uri: mongodb://root:password@mongo:27017/

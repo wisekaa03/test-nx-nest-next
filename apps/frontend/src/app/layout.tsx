@@ -1,22 +1,22 @@
 import * as React from 'react';
+import { ApolloClient, InMemoryCache, ApolloProvider, HttpLink, NormalizedCacheObject } from '@apollo/client';
+import { ApolloNextAppProvider } from '@apollo/client-integration-nextjs';
 import { AppRouterCacheProvider } from '@mui/material-nextjs/v15-appRouter';
 import { ThemeProvider } from '@mui/material/styles';
 import CssBaseline from '@mui/material/CssBaseline';
 import theme from '../theme';
 import InitColorSchemeScript from '@mui/material/InitColorSchemeScript';
-import ModeSwitch from '../components/ModeSwitch';
+import { ApolloWrapper } from './apollo';
 
 export default function RootLayout(props: { children: React.ReactNode }) {
   return (
-    <html lang="en" suppressHydrationWarning>
+    <html lang="en">
       <body>
         <InitColorSchemeScript attribute="class" />
         <AppRouterCacheProvider options={{ enableCssLayer: true }}>
           <ThemeProvider theme={theme}>
-            {/* CssBaseline kickstart an elegant, consistent, and simple baseline to build upon. */}
             <CssBaseline />
-            <ModeSwitch />
-            {props.children}
+            <ApolloWrapper>{props.children}</ApolloWrapper>
           </ThemeProvider>
         </AppRouterCacheProvider>
       </body>

@@ -343,6 +343,16 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@fastify/helmet@npm:13.0.1":
+  version: 13.0.1
+  resolution: "@fastify/helmet@npm:13.0.1"
+  dependencies:
+    fastify-plugin: "npm:^5.0.0"
+    helmet: "npm:^8.0.0"
+  checksum: 10c0/f79553b17e536fc6d05fbcb1335a957768abaad1f0c2654354b363b3e34e6498429fa53160e9db065d6fc3a8af001f406ad8cf54d66836abb56e836a67d8e3a9
+  languageName: node
+  linkType: hard
+
 "@fastify/merge-json-schemas@npm:^0.2.0":
   version: 0.2.1
   resolution: "@fastify/merge-json-schemas@npm:0.2.1"
@@ -1145,6 +1155,7 @@ __metadata:
     "@apollo/server": "npm:4.12.1"
     "@as-integrations/fastify": "npm:2.1.1"
     "@elastic/elasticsearch": "npm:9.0.2"
+    "@fastify/helmet": "npm:13.0.1"
     "@nestjs/apollo": "npm:13.1.0"
     "@nestjs/common": "npm:11.1.2"
     "@nestjs/config": "npm:4.0.2"
@@ -2011,6 +2022,13 @@ __metadata:
   dependencies:
     function-bind: "npm:^1.1.2"
   checksum: 10c0/3769d434703b8ac66b209a4cca0737519925bbdb61dd887f93a16372b14694c63ff4e797686d87c90f08168e81082248b9b028bad60d4da9e0d1148766f56eb9
+  languageName: node
+  linkType: hard
+
+"helmet@npm:^8.0.0":
+  version: 8.1.0
+  resolution: "helmet@npm:8.1.0"
+  checksum: 10c0/94d3a7ebc88dbda1421635bdf33f00724adb5252269e93c5ab296ec0db11336d01265659ad3739ab1a1e881fb23a686ff7e788aac6a5fb929285134f157df763
   languageName: node
   linkType: hard
 

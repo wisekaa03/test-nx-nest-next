@@ -5,26 +5,32 @@
 /* 1 */
 /***/ ((module) => {
 
-module.exports = require("@nestjs/core");
+module.exports = require("tslib");
 
 /***/ }),
 /* 2 */
 /***/ ((module) => {
 
-module.exports = require("nestjs-pino");
+module.exports = require("@nestjs/core");
 
 /***/ }),
 /* 3 */
+/***/ ((module) => {
+
+module.exports = require("nestjs-pino");
+
+/***/ }),
+/* 4 */
 /***/ ((__unused_webpack_module, exports, __webpack_require__) => {
 
 
 Object.defineProperty(exports, "__esModule", ({ value: true }));
 exports.AppModule = void 0;
-const tslib_1 = __webpack_require__(4);
+const tslib_1 = __webpack_require__(1);
 const node_fs_1 = __webpack_require__(5);
 const yaml = tslib_1.__importStar(__webpack_require__(6));
 const common_1 = __webpack_require__(7);
-const nestjs_pino_1 = __webpack_require__(2);
+const nestjs_pino_1 = __webpack_require__(3);
 const config_1 = __webpack_require__(8);
 const logger_module_options_1 = __webpack_require__(9);
 const auth_module_1 = __webpack_require__(11);
@@ -51,12 +57,6 @@ exports.AppModule = AppModule = tslib_1.__decorate([
     })
 ], AppModule);
 
-
-/***/ }),
-/* 4 */
-/***/ ((module) => {
-
-module.exports = require("tslib");
 
 /***/ }),
 /* 5 */
@@ -141,7 +141,7 @@ module.exports = require("pino-elasticsearch");
 
 Object.defineProperty(exports, "__esModule", ({ value: true }));
 exports.AuthModule = void 0;
-const tslib_1 = __webpack_require__(4);
+const tslib_1 = __webpack_require__(1);
 const common_1 = __webpack_require__(7);
 const config_1 = __webpack_require__(8);
 const jwt_1 = __webpack_require__(12);
@@ -194,7 +194,7 @@ module.exports = require("@nestjs/passport");
 var _a, _b;
 Object.defineProperty(exports, "__esModule", ({ value: true }));
 exports.JwtStrategy = void 0;
-const tslib_1 = __webpack_require__(4);
+const tslib_1 = __webpack_require__(1);
 const passport_jwt_1 = __webpack_require__(15);
 const common_1 = __webpack_require__(7);
 const config_1 = __webpack_require__(8);
@@ -242,7 +242,7 @@ var AuthService_1;
 var _a, _b, _c;
 Object.defineProperty(exports, "__esModule", ({ value: true }));
 exports.AuthService = void 0;
-const tslib_1 = __webpack_require__(4);
+const tslib_1 = __webpack_require__(1);
 const node_crypto_1 = __webpack_require__(17);
 const common_1 = __webpack_require__(7);
 const config_1 = __webpack_require__(8);
@@ -253,6 +253,7 @@ let AuthService = AuthService_1 = class AuthService {
     configService;
     jwtService;
     userService;
+    logger = new common_1.Logger(AuthService_1.name);
     accessTokenExpires;
     constructor(configService, jwtService, userService) {
         this.configService = configService;
@@ -266,6 +267,7 @@ let AuthService = AuthService_1 = class AuthService {
         if (!valid) {
             throw new common_1.ForbiddenException();
         }
+        this.logger.log(`The "${username}" has logged in`);
         const token = await this.generateAccessToken(user);
         return {
             token,
@@ -326,7 +328,7 @@ exports.JWT_BASE_OPTIONS = {};
 var _a;
 Object.defineProperty(exports, "__esModule", ({ value: true }));
 exports.UserService = void 0;
-const tslib_1 = __webpack_require__(4);
+const tslib_1 = __webpack_require__(1);
 const node_crypto_1 = __webpack_require__(17);
 const common_1 = __webpack_require__(7);
 const mongoose_1 = __webpack_require__(20);
@@ -399,7 +401,7 @@ module.exports = require("mongoose");
 
 Object.defineProperty(exports, "__esModule", ({ value: true }));
 exports.UserSchema = exports.UserModel = void 0;
-const tslib_1 = __webpack_require__(4);
+const tslib_1 = __webpack_require__(1);
 const mongoose_1 = __webpack_require__(20);
 const mongoose_2 = __webpack_require__(21);
 let UserModel = class UserModel extends mongoose_2.Document {
@@ -455,7 +457,7 @@ module.exports = require("@nestjs/graphql");
 
 Object.defineProperty(exports, "__esModule", ({ value: true }));
 exports.ServiceModule = void 0;
-const tslib_1 = __webpack_require__(4);
+const tslib_1 = __webpack_require__(1);
 const common_1 = __webpack_require__(7);
 const user_service_1 = __webpack_require__(19);
 const database_module_1 = __webpack_require__(26);
@@ -478,7 +480,7 @@ exports.ServiceModule = ServiceModule = tslib_1.__decorate([
 
 Object.defineProperty(exports, "__esModule", ({ value: true }));
 exports.DatabaseModule = void 0;
-const tslib_1 = __webpack_require__(4);
+const tslib_1 = __webpack_require__(1);
 const common_1 = __webpack_require__(7);
 const config_1 = __webpack_require__(8);
 const mongoose_1 = __webpack_require__(20);
@@ -520,7 +522,7 @@ exports.MongoDbModuleOptions = MongoDbModuleOptions;
 
 Object.defineProperty(exports, "__esModule", ({ value: true }));
 exports.GqlModule = void 0;
-const tslib_1 = __webpack_require__(4);
+const tslib_1 = __webpack_require__(1);
 const node_path_1 = __webpack_require__(29);
 const common_1 = __webpack_require__(7);
 const graphql_1 = __webpack_require__(24);
@@ -569,7 +571,7 @@ module.exports = require("@nestjs/apollo");
 var _a, _b, _c, _d, _e, _f;
 Object.defineProperty(exports, "__esModule", ({ value: true }));
 exports.UserResolver = void 0;
-const tslib_1 = __webpack_require__(4);
+const tslib_1 = __webpack_require__(1);
 const common_1 = __webpack_require__(7);
 const graphql_1 = __webpack_require__(24);
 const jwt_auth_guard_1 = __webpack_require__(32);
@@ -673,7 +675,7 @@ exports.UserResolver = UserResolver = tslib_1.__decorate([
 
 Object.defineProperty(exports, "__esModule", ({ value: true }));
 exports.JwtAuthGuard = void 0;
-const tslib_1 = __webpack_require__(4);
+const tslib_1 = __webpack_require__(1);
 const common_1 = __webpack_require__(7);
 const graphql_1 = __webpack_require__(24);
 const passport_1 = __webpack_require__(13);
@@ -711,7 +713,7 @@ exports.User = (0, common_1.createParamDecorator)((data, ctx) => {
 
 Object.defineProperty(exports, "__esModule", ({ value: true }));
 exports.DeleteUserInput = exports.CreateUserInput = exports.LoginUserInput = exports.LoginUserOutput = exports.UserOutput = void 0;
-const tslib_1 = __webpack_require__(4);
+const tslib_1 = __webpack_require__(1);
 const graphql_1 = __webpack_require__(24);
 let UserOutput = class UserOutput {
     username;
@@ -796,6 +798,12 @@ exports.DeleteUserInput = DeleteUserInput = tslib_1.__decorate([
 
 module.exports = require("@nestjs/platform-fastify");
 
+/***/ }),
+/* 36 */
+/***/ ((module) => {
+
+module.exports = require("@fastify/helmet");
+
 /***/ })
 /******/ 	]);
 /************************************************************************/
@@ -830,11 +838,13 @@ var __webpack_exports__ = {};
 var exports = __webpack_exports__;
 
 Object.defineProperty(exports, "__esModule", ({ value: true }));
-const core_1 = __webpack_require__(1);
-const nestjs_pino_1 = __webpack_require__(2);
-const app_module_1 = __webpack_require__(3);
+const tslib_1 = __webpack_require__(1);
+const core_1 = __webpack_require__(2);
+const nestjs_pino_1 = __webpack_require__(3);
+const app_module_1 = __webpack_require__(4);
 const platform_fastify_1 = __webpack_require__(35);
 const config_1 = __webpack_require__(8);
+const helmet_1 = tslib_1.__importDefault(__webpack_require__(36));
 async function bootstrap() {
     const app = await core_1.NestFactory.create(app_module_1.AppModule, new platform_fastify_1.FastifyAdapter(), {
         bufferLogs: false,
@@ -843,8 +853,22 @@ async function bootstrap() {
     const logger = app.get(nestjs_pino_1.Logger);
     app.useLogger(logger);
     app.flushLogs();
+    await app.register(helmet_1.default, {
+        contentSecurityPolicy: {
+            directives: {
+                defaultSrc: [`'self'`, 'unpkg.com'],
+                styleSrc: [`'self'`, `'unsafe-inline'`, 'cdn.jsdelivr.net', 'fonts.googleapis.com', 'unpkg.com'],
+                fontSrc: [`'self'`, 'fonts.gstatic.com', 'data:'],
+                imgSrc: [`'self'`, 'data:', 'cdn.jsdelivr.net'],
+                scriptSrc: [`'self'`, `https: 'unsafe-inline'`, `cdn.jsdelivr.net`, `'unsafe-eval'`],
+            },
+        },
+    });
+    app.enableCors({
+        origin: '*',
+    });
     const configService = app.get(config_1.ConfigService);
-    const port = configService.get('port', 3000);
+    const port = configService.get('port.backend', 3000);
     app.useGlobalInterceptors(new nestjs_pino_1.LoggerErrorInterceptor());
     await app.listen(port, '0.0.0.0');
     logger.log(`🚀 Application is running on: http://0.0.0.0:${port}/`);
