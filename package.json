@@ -8,7 +8,7 @@
   "dependencies": {
     "@apollo/client": "^3.13.8",
     "@apollo/client-integration-nextjs": "^0.12.2",
-    "@apollo/server": "^4.12.1",
+    "@apollo/server": "^5.4.0",
     "@as-integrations/fastify": "^2.1.1",
     "@elastic/elasticsearch": "^9.0.2",
     "@emotion/react": "^11.14.0",
